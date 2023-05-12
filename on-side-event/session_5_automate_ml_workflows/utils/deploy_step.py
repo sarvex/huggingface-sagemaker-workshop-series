@@ -29,7 +29,6 @@ class ModelDeployment(StepCollection):
         #        Use the current time to define unique names for the resources created
         current_time = time.strftime("%m-%d-%H-%M-%S", time.localtime())
 
-        steps = []
         lambda_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "deploy_handler.py")
         # Lambda helper class can be used to create the Lambda function
         self.func = Lambda(
@@ -63,7 +62,7 @@ class ModelDeployment(StepCollection):
             },
             outputs=[output_param_1, output_param_2, output_param_3],
         )
-        steps.append(lambda_step)
+        steps = [lambda_step]
         self.steps = steps
 
     def create_lambda_role(self, name):

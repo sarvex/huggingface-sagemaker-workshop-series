@@ -50,8 +50,7 @@ if __name__ == "__main__":
 
     # process dataset
     def process(examples):
-        tokenized_inputs = tokenizer(examples["text"], truncation=True, max_length=512)
-        return tokenized_inputs
+        return tokenizer(examples["text"], truncation=True, max_length=512)
 
     tokenized_datasets = dataset.map(process, batched=True)
     tokenized_datasets = tokenized_datasets.rename_column("intent", "labels")
